@@ -257,6 +257,25 @@ void ofApp::setupFont() {
     }
 }
 
+void ofApp::drawSun() {
+    ofSetColor(ofColor::fromHex(palette[0]));
+    ofDrawCircle(sunX, sunY, sunRad);
+}
+
+void ofApp::setupSun() {
+    int minRad = dpi / 4;
+    int maxRad = dpi * 2;
+    sunRad = ofRandom(minRad, maxRad);
+    
+    int minX = sceneX + margin + sunRad;
+    int maxX = sceneX + sceneWidth - margin - sunRad;
+    sunX = ofRandom(minX, maxX);
+    
+    int minY = sceneY + margin + sunRad;
+    int maxY = sceneY + (sceneHeight / 2) - sunRad;
+    sunY = ofRandom(minY, maxY);
+}
+
 string ofApp::generateTitle() {
     string title = "PUBESBURGH";
     ofBuffer buffer = ofBufferFromFile("titles.txt");
@@ -301,6 +320,8 @@ void ofApp::setupTitle() {
 void ofApp::drawScene() {
     ofSetColor(ofColor::fromHex(palette[1]));
     ofDrawRectangle( margin, margin, ofGetWidth() - (margin * 2), ofGetWidth() - (margin * 2));
+    
+    drawSun();
 }
 
 void ofApp::setupColors() {
