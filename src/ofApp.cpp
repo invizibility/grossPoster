@@ -131,11 +131,11 @@ void ofApp::update(){
     
     //DRAW TERRAIN
     groundMasker.beginMask();
-    grounds[0].draw(0, ofGetWidth() / 8, ofGetWidth(), ofGetWidth() * 6 / 8);
+    grounds[0].draw(margin, ofGetWidth() / 8, ofGetWidth()-2*margin, ofGetWidth() * 7 / 8);
     groundMasker.endMask();
     
     groundMasker.beginLayer();
-    textures[textureMainIndex][textureGroundIndex].draw(0, ofGetWidth() / 8, ofGetWidth(), ofGetWidth() * 6 / 8);
+    textures[textureMainIndex][textureGroundIndex].draw(margin, ofGetWidth() / 8, ofGetWidth()-2*margin, ofGetWidth() * 7 / 8);
     groundMasker.endLayer();
     
     //DRAW FOREGROUND
@@ -161,27 +161,7 @@ void ofApp::update(){
         textures[textureMainIndex][textureBackIndex].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         backMasker.endLayer(i);
     }
-//    masker.beginMask(layer1);
-//    foreMasks[0][0].draw(0,0,200,200);
-//    //foreMasks[0][0].draw(60,0,200,200);
-//    //testim.draw(0,0);
-//    //textures[0][0].draw(0,0,300,200);
-//    masker.endMask(layer1);
-//    
-//    
-//    
-//    masker.beginLayer(layer1);
-//    textures[0][0].draw(0,0,200,200);
-//    //testim.draw(0,0);
-//    masker.endLayer(layer1);
-//    
-//    masker.beginMask(layer2);
-//    foreMasks[0][0].draw(60,0,200,200);
-//    masker.endMask(layer2);
-//    
-//    masker.beginLayer(layer2);
-//    textures[0][0].draw(60,0,200,200);
-//    masker.endLayer(layer2);
+
     
     
     
