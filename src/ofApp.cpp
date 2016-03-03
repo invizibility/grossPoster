@@ -144,6 +144,10 @@ void ofApp::update(){
     {
         foreMasker.beginMask(i);
         foreMasks[0][0].draw(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
+        ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
+        ofSetColor(ofColor::fromHex(palette[3]));
+        ofDrawRectangle(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
+        ofDisableBlendMode();
         foreMasker.endMask(i);
         
         foreMasker.beginLayer(i);
@@ -156,6 +160,10 @@ void ofApp::update(){
     {
         backMasker.beginMask(i);
         backMasks[0][0].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
+        ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
+        ofSetColor(ofColor::fromHex(palette[1]));
+        ofDrawRectangle(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
+        ofDisableBlendMode();
         backMasker.endMask(i);
         
         backMasker.beginLayer(i);
@@ -179,6 +187,8 @@ void ofApp::draw(){
     foreMasker.draw();
     
     //textures[0][0].draw(0,0);
+    
+    drawGuards();
 
 }
 
@@ -360,4 +370,15 @@ void ofApp::setupColors() {
         ofSetBackgroundColorHex(palette[4]);
         titleColor = ofColor::fromHex(palette[0]);
     }
+}
+
+void ofApp::drawGuards() {
+    if (colorScheme) {
+        ofSetColor(ofColor::fromHex(palette[0]));
+    } else {
+        ofSetColor(ofColor::fromHex(palette[4]));
+    }
+    
+    ofDrawRectangle(0, 0, sceneX, sceneY + sceneHeight);
+    ofDrawRectangle(sceneX + sceneWidth, 0, sceneX, sceneY + sceneHeight);
 }

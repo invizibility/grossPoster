@@ -80,4 +80,7 @@ class ofApp : public ofBaseApp{
     int sunRad;
     void setupSun();
     void drawSun();
+    
+    //side guards
+    void drawGuards();
 };
