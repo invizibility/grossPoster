@@ -131,22 +131,22 @@ void ofApp::update(){
     
     //DRAW TERRAIN
     groundMasker.beginMask();
-    grounds[0].draw(0, 100, ofGetWidth(), 600);
+    grounds[0].draw(0, ofGetWidth() / 8, ofGetWidth(), ofGetWidth() * 6 / 8);
     groundMasker.endMask();
     
     groundMasker.beginLayer();
-    textures[textureMainIndex][textureGroundIndex].draw(0, 100, ofGetWidth(), 600);
+    textures[textureMainIndex][textureGroundIndex].draw(0, ofGetWidth() / 8, ofGetWidth(), ofGetWidth() * 6 / 8);
     groundMasker.endLayer();
     
     //DRAW FOREGROUND
     for(int i =0;i<foreObjects;i++)
     {
         foreMasker.beginMask(i);
-        foreMasks[0][0].draw(foreXVal[i], foreYVal[i], 200, 200);
+        foreMasks[0][0].draw(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
         foreMasker.endMask(i);
         
         foreMasker.beginLayer(i);
-        textures[textureMainIndex][textureForeIndex].draw(foreXVal[i], foreYVal[i], 200, 200);
+        textures[textureMainIndex][textureForeIndex].draw(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
         foreMasker.endLayer(i);
     }
 
@@ -154,11 +154,11 @@ void ofApp::update(){
     for(int i =0;i<backObjects;i++)
     {
         backMasker.beginMask(i);
-        backMasks[0][0].draw(backXVal[i], backYVal[i], 300, 300);
+        backMasks[0][0].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         backMasker.endMask(i);
         
         backMasker.beginLayer(i);
-        textures[textureMainIndex][textureBackIndex].draw(backXVal[i], backYVal[i], 300, 300);
+        textures[textureMainIndex][textureBackIndex].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         backMasker.endLayer(i);
     }
 //    masker.beginMask(layer1);
