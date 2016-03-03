@@ -65,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00D0D60F1C88251900ABF296 /* palettes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = palettes.txt; path = bin/data/palettes.txt; sourceTree = SOURCE_ROOT; };
 		6B10899E1C87A3C900FF19FC /* ofxCvBlob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCvBlob.h; sourceTree = "<group>"; };
 		6B10899F1C87A3C900FF19FC /* ofxCvColorImage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvColorImage.cpp; sourceTree = "<group>"; };
 		6B1089A01C87A3C900FF19FC /* ofxCvColorImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxCvColorImage.h; sourceTree = "<group>"; };
@@ -884,6 +885,7 @@
 		6B108AC91C87B83700FF19FC /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				00D0D60F1C88251900ABF296 /* palettes.txt */,
 				6B108ACA1C87B83700FF19FC /* blend.frag */,
 				6B108ACB1C87B83700FF19FC /* blend.vert */,
 			);

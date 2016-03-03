@@ -7,6 +7,9 @@ using namespace ofxCv;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    setupColors();
+    setupFont();
+    setupTitle();
     
     //shader.load("shaders/blend");
     testim.load("testPosterElement2.png");
@@ -186,6 +189,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    drawTitle();
+    drawScene();
 
     //masker.draw();
     groundMasker.draw();
@@ -250,4 +255,106 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+void ofApp::drawTitle() {
+    ofSetColor(titleColor);
+    titleFont.drawString(title, titleX, titleY);
+}
+
+void ofApp::setupFont() {
+    ofTrueTypeFont::setGlobalDpi(72);
+    
+    ofDirectory fontDir;
+    // only allow fonts
+    fontDir.allowExt("otf");
+    fontDir.allowExt("ttf");
+    // now list em
+    fontDir.listDir("fonts");
+    if( fontDir.size() ){
+        int randomized = (int)ofRandom(fontDir.size());
+        titleFont.load(fontDir.getPath(randomized), ofGetHeight() / 12);
+    }
+}
+
+string ofApp::generateTitle() {
+    string title = "PUBESBURGH";
+    ofBuffer buffer = ofBufferFromFile("titles.txt");
+    vector <string> titles;
+    
+    if(buffer.size()) {
+        for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
+            string line = *it;
+            // copy the line to draw later
+            // make sure its not a empty line
+            if(line.empty() == false) {
+                titles.push_back(line);
+            }
+        }
+    }
+    
+    bool prefixed = (int)ofRandom(2);
+    vector <string> suffix = ofSplitString(titles[1], " ");
+    vector <string> prefix = ofSplitString(titles[0], " ");
+    vector <string> word = ofSplitString(titles[2], " ");
+    
+    if (prefixed) {
+        title = prefix[(int)ofRandom(prefix.size())] + " " + word[(int)ofRandom(word.size())];
+    } else {
+        title = word[(int)ofRandom(word.size())] + " " + suffix[(int)ofRandom(suffix.size())];
+    }
+    return title;
+}
+
+void ofApp::setupTitle() {
+    title = generateTitle();
+    
+    // get the width
+    ofRectangle bounded = titleFont.getStringBoundingBox(title, 0,0);
+    int titleWidth = bounded.width;
+    
+    // calculate where to start leftwise
+    titleX = (ofGetWidth() - titleWidth) / 2;
+    titleY = ofGetHeight() * 3 / 4;
+}
+
+void ofApp::drawScene() {
+    ofSetColor(ofColor::fromHex(palette[1]));
+    ofDrawRectangle( margin, margin, ofGetWidth() - (margin * 2), ofGetWidth() - (margin * 2));
+}
+
+void ofApp::setupColors() {
+    // determine whether bg is dark or light
+    colorScheme = (int)ofRandom(2);
+    
+    ofBuffer buffer = ofBufferFromFile("palettes.txt");
+    vector <string> palettes;
+    
+    if(buffer.size()) {
+        for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
+            string line = *it;
+            // copy the line to draw later
+            // make sure its not a empty line
+            if(line.empty() == false) {
+                palettes.push_back(line);
+            }
+        }
+    }
+    
+    int randomized = (int)ofRandom(palettes.size());
+    vector <string> strPalette = ofSplitString(palettes[randomized], " ");
+    
+    // convert to actual palette
+    for (int i = 0; i < strPalette.size(); i++) {
+        palette.push_back(ofHexToInt(strPalette[i]));
+    }
+    
+    // set background color based on this shit
+    if (colorScheme) {
+        ofSetBackgroundColorHex(palette[0]);
+        titleColor = ofColor::fromHex(palette[4]);
+    } else {
+        ofSetBackgroundColorHex(palette[4]);
+        titleColor = ofColor::fromHex(palette[0]);
+    }
 }

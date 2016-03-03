@@ -47,5 +47,27 @@ class ofApp : public ofBaseApp{
     
     int foreCatIndex, forTypeIndex, backCatIndex, backTypeIndex;
     
+    // printing info
+    int dpi = 50;
+    int margin = dpi / 2;
+    
+    // title
+    string generateTitle();
+    string title;
+    int titleX;
+    int titleY;
+    ofTrueTypeFont titleFont;
+    ofColor titleColor;
+    
+    // color
+    bool colorScheme;
+    vector <int> palette;
+    void setupColors();
+    void setupFont();
+    void setupTitle();
+    void drawTitle();
+    
+    // scenery
+    void drawScene();
 		
 };
