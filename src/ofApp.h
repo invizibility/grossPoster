@@ -45,7 +45,7 @@ class ofApp : public ofBaseApp{
     int groundIndex;
     int textureMainIndex,textureForeIndex,textureBackIndex,textureGroundIndex;
     
-    int foreCatIndex, forTypeIndex, backCatIndex, backTypeIndex;
+    int foreCatIndex, foreTypeIndex, backCatIndex, backTypeIndex;
     
     // printing info
     int dpi = 50;

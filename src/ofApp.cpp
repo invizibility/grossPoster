@@ -82,6 +82,8 @@ void ofApp::setup(){
         i = foreMasker.newLayer();
     }
     textureForeIndex = (int)ofRandom(textures[textureMainIndex].size());
+    foreCatIndex = (int)ofRandom(foreMasks.size());
+    foreTypeIndex = (int)ofRandom(foreMasks[foreCatIndex].size());
     
     
     
@@ -106,12 +108,15 @@ void ofApp::setup(){
     for (int i=0;i<foreObjects;i++)
     {
         backXVal.push_back((int)ofRandom(margin*1.5,ofGetWidth()-margin*7));
-        backYVal.push_back(ofGetWidth() * 3/8
+        backYVal.push_back(ofGetWidth() * 3 /8
                            //(int)ofRandom(0,10)
                            );
         i = backMasker.newLayer();
     }
     textureBackIndex = (int)ofRandom(textures[textureMainIndex].size());
+    backCatIndex = (int)ofRandom(backMasks.size());
+    backTypeIndex = (int)ofRandom(backMasks[backCatIndex].size());
+    
     
     //cout << textures.size();
     
@@ -143,7 +148,7 @@ void ofApp::update(){
     for(int i =0;i<foreObjects;i++)
     {
         foreMasker.beginMask(i);
-        foreMasks[0][0].draw(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
+        foreMasks[foreCatIndex][foreTypeIndex].draw(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
         ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
             ofSetColor(ofColor::fromHex(palette[3]));
             ofDrawRectangle(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
@@ -159,7 +164,7 @@ void ofApp::update(){
     for(int i =0;i<backObjects;i++)
     {
         backMasker.beginMask(i);
-        backMasks[0][0].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
+        backMasks[backCatIndex][backTypeIndex].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
             ofSetColor(ofColor::fromHex(palette[1]));
             ofDrawRectangle(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
