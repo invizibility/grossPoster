@@ -76,8 +76,8 @@ void ofApp::setup(){
     foreObjects = (int)ofRandom(5, 10);
     for (int i=0;i<foreObjects;i++)
     {
-        foreXVal.push_back((int)ofRandom(500));
-        foreYVal.push_back((int)ofRandom(350,550));
+        foreXVal.push_back((int)ofRandom(margin*1.5,ofGetWidth()-margin*3.5));
+        foreYVal.push_back((int)ofRandom((ofGetWidth()+margin)/2,ofGetWidth()-4.7*margin));
         i = foreMasker.newLayer();
     }
     textureForeIndex = (int)ofRandom(textures[textureMainIndex].size());
