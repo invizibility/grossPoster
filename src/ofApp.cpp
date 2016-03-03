@@ -106,7 +106,7 @@ void ofApp::setup(){
     for (int i=0;i<foreObjects;i++)
     {
         backXVal.push_back((int)ofRandom(margin*1.5,ofGetWidth()-margin*7));
-        backYVal.push_back(ofGetWidth() * 2.5/8
+        backYVal.push_back(ofGetWidth() * 3/8
                            //(int)ofRandom(0,10)
                            );
         i = backMasker.newLayer();
