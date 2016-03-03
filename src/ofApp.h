@@ -69,5 +69,15 @@ class ofApp : public ofBaseApp{
     
     // scenery
     void drawScene();
-		
+    int sceneWidth = ofGetWidth() - (margin * 2);
+    int sceneHeight = sceneWidth;
+    int sceneX = margin;
+    int sceneY = sceneX;
+    
+    // sun
+    int sunX;
+    int sunY;
+    int sunRad;
+    void setupSun();
+    void drawSun();
 };
