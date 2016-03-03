@@ -7,6 +7,7 @@ using namespace ofxCv;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetFrameRate(1);
     setupColors();
     setupFont();
     setupTitle();
@@ -130,10 +131,7 @@ void ofApp::setup(){
     groundMasker.newLayer();
     groundIndex = (int)ofRandom(grounds.size());
     textureGroundIndex = (int)ofRandom(textures[textureMainIndex].size());
-}
-
-//--------------------------------------------------------------
-void ofApp::update(){
+    
     
     //DRAW TERRAIN
     groundMasker.beginMask();
@@ -150,8 +148,8 @@ void ofApp::update(){
         foreMasker.beginMask(i);
         foreMasks[foreCatIndex][foreTypeIndex].draw(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
         ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
-            ofSetColor(ofColor::fromHex(palette[3]));
-            ofDrawRectangle(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
+        ofSetColor(ofColor::fromHex(palette[3]), 100);
+        ofDrawRectangle(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
         ofDisableBlendMode();
         foreMasker.endMask(i);
         
@@ -159,15 +157,15 @@ void ofApp::update(){
         textures[textureMainIndex][textureForeIndex].draw(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
         foreMasker.endLayer(i);
     }
-
+    
     //DRAW BACKGROUND
     for(int i =0;i<backObjects;i++)
     {
         backMasker.beginMask(i);
         backMasks[backCatIndex][backTypeIndex].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
-            ofSetColor(ofColor::fromHex(palette[1]));
-            ofDrawRectangle(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
+        ofSetColor(ofColor::fromHex(palette[1]), 100);
+        ofDrawRectangle(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         ofDisableBlendMode();
         backMasker.endMask(i);
         
@@ -175,9 +173,10 @@ void ofApp::update(){
         textures[textureMainIndex][textureBackIndex].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         backMasker.endLayer(i);
     }
+}
 
-    
-    
+//--------------------------------------------------------------
+void ofApp::update(){
     
 }
 
