@@ -10,6 +10,7 @@ void ofApp::setup(){
     setupColors();
     setupFont();
     setupTitle();
+    setupSun();
     
     //shader.load("shaders/blend");
     testim.load("testPosterElement2.png");
@@ -298,9 +299,33 @@ void ofApp::setupTitle() {
     titleY = ofGetHeight() * 3 / 4;
 }
 
+void ofApp::setupSun() {
+    // generate radius first
+    int maxR = dpi * 2;
+    int minR = dpi / 4;
+    sunRad = ofRandom(minR, maxR);
+    
+    // create random-ass bounds
+    int minX = sceneX + margin + sunRad ;
+    int maxX = sceneX + sceneWidth - margin - sunRad;
+    sunX = ofRandom(minX, maxX);
+    
+    int minY = sceneY + margin + sunRad;
+    int maxY = sceneY + (sceneHeight / 3) - sunRad;
+    sunY = ofRandom(minY, maxY);
+    
+}
+
 void ofApp::drawScene() {
     ofSetColor(ofColor::fromHex(palette[1]));
-    ofDrawRectangle( margin, margin, ofGetWidth() - (margin * 2), ofGetWidth() - (margin * 2));
+    ofDrawRectangle( margin, margin, ofGetWidth() - (margin * 2), ofGetWidth() - (margin * 2) );
+    
+    drawSun();
+}
+
+void ofApp::drawSun() {
+    ofSetColor(ofColor::fromHex(palette[4]));
+    ofDrawCircle(sunX, sunY, sunRad);
 }
 
 void ofApp::setupColors() {
