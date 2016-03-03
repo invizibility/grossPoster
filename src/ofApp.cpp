@@ -105,8 +105,8 @@ void ofApp::setup(){
     backObjects = (int)ofRandom(2, 4);
     for (int i=0;i<foreObjects;i++)
     {
-        backXVal.push_back((int)ofRandom(500));
-        backYVal.push_back(100
+        backXVal.push_back((int)ofRandom(margin*1.5,ofGetWidth()-margin*7));
+        backYVal.push_back(ofGetWidth() * 2.5/8
                            //(int)ofRandom(0,10)
                            );
         i = backMasker.newLayer();
@@ -174,9 +174,10 @@ void ofApp::draw(){
     drawScene();
 
     //masker.draw();
+    backMasker.draw();
     groundMasker.draw();
     foreMasker.draw();
-    backMasker.draw();
+    
     //textures[0][0].draw(0,0);
 
 }
