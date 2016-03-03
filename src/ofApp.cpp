@@ -145,8 +145,8 @@ void ofApp::update(){
         foreMasker.beginMask(i);
         foreMasks[0][0].draw(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
         ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
-        ofSetColor(ofColor::fromHex(palette[3]));
-        ofDrawRectangle(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
+            ofSetColor(ofColor::fromHex(palette[3]));
+            ofDrawRectangle(foreXVal[i], foreYVal[i], ofGetWidth() / 4, ofGetWidth() / 4);
         ofDisableBlendMode();
         foreMasker.endMask(i);
         
@@ -161,8 +161,8 @@ void ofApp::update(){
         backMasker.beginMask(i);
         backMasks[0][0].draw(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
-        ofSetColor(ofColor::fromHex(palette[1]));
-        ofDrawRectangle(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
+            ofSetColor(ofColor::fromHex(palette[1]));
+            ofDrawRectangle(backXVal[i], backYVal[i], ofGetWidth() * 3 / 8, ofGetWidth() * 3 / 8);
         ofDisableBlendMode();
         backMasker.endMask(i);
         
